@@ -1,18 +1,17 @@
 #include <Arduino.h>
+#include <M5Unified.h>
 
-// put function declarations here:
-int myFunction(int, int);
+M5Canvas canvas(&M5.Display);
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+void setup(){
+  auto cfg = M5.config();
+  M5.begin(cfg);
+  canvas.createSprite(M5.Display.width(), M5.Display.height());
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void loop(){
+  canvas.fillScreen(WHITE);
+  canvas.setCursor(0, 0);
+  canvas.printf("Hello World");
+  canvas.pushSprite(0, 0);
 }
